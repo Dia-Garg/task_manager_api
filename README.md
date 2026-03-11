@@ -76,3 +76,10 @@ Example Response:
 - Add API to delete tasks
 - Connect the API to a database
 - Add user authentication 
+
+## Project Goal
+
+This project is a beginner backend API built using FastAPI.  
+It demonstrates how to create a server, define API endpoints, and return JSON responses.
+
+The API currently supports retrieving tasks and will be extended to support creating and deleting tasks.
