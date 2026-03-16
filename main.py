@@ -1,4 +1,5 @@
 from fastapi import FastAPI as fapi
+from pydantic import BaseModel
 
 app = fapi()
 
@@ -12,8 +13,6 @@ def home():
 def get_tasks():
     return tasks
 
-from pydantic import BaseModel
-
 class Task(BaseModel):
     title: str
 
@@ -21,7 +20,7 @@ class Task(BaseModel):
 def create_task(task: Task):
     new_task={"id": len(tasks)+1, "title": task.title, "done": False}
 
-    task.append(new_task)
+    tasks.append(new_task)
     return new_task
 
 @app.delete("/tasks/{task_id}")

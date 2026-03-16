@@ -1,8 +1,8 @@
 # Task Manager API
 
-A simple backend API built with FastAPI to manage tasks.
+A simple backend API built using **FastAPI** to manage tasks.
 
-This project demonstrates basic backend concepts such as API endpoints, HTTP methods, and JSON responses.
+This project demonstrates the fundamentals of backend development, including creating API endpoints, handling HTTP requests, and returning JSON responses.
 
 ---
 
@@ -10,8 +10,9 @@ This project demonstrates basic backend concepts such as API endpoints, HTTP met
 
 - Start a backend server using FastAPI
 - Retrieve tasks using a GET API
-- Interactive API documentation using Swagger UI
-- Simple task storage using Python dictionaries
+- Create new tasks using a POST API
+- Delete tasks using a DELETE API
+- Interactive API testing using FastAPI's Swagger documentation
 
 ---
 
@@ -20,66 +21,99 @@ This project demonstrates basic backend concepts such as API endpoints, HTTP met
 - Python
 - FastAPI
 - Uvicorn
+- Pydantic
 
 ---
 
 ## Installation
 
-Install dependencies:
+Clone the repository and install dependencies.
+
+bash
 pip install -r requirements.txt
 
 ---
-
 ## Run the Server
 
-Start the backend server:
+Start the backend server using:
+
 python -m uvicorn main:app --reload
 
 The API will run at:
-https://127.0.0.1:8000
+
+http://127.0.0.1:8000
 
 ---
-
 ## API Documentation
 
 FastAPI automatically generates interactive API documentation.
 
 Open:
-https://127.0.0.1:8000/docs
 
-You can test the API directly from the browser. 
+http://127.0.0.1:8000/docs
+
+You can test all endpoints directly from this interface.
 
 ---
 
-## Example Endpoints
+## API Endpoints
+Check Server Status
+GET /
 
-### Get Server Status
-
-GET/
 Response:
+
 {"message": "Task Manager API is running"}
 
 ### Get All Tasks
-
-GET/tasks
+GET /tasks
 
 Example Response:
-[
-    {"id": 1, "title": "study DBMS", "done": False}, {"id": 2, "title": "finish CSV cleaner", "done": True}
-    ]
 
---- 
+[
+ {"id": 1,"title": "study DBMS","done": false},
+  {"id": 2,"title": "finish CSV cleaner","done": true}
+]
+
+### Create a Task
+POST /tasks
+
+Example Request:
+
+{"title": "prepare for internship applications"}
+
+Example Response:
+
+{"id": 3,"title": "prepare for internship applications",
+"done": false}
+
+### Delete a Task
+DELETE /tasks/{task_id}
+
+Example:
+
+DELETE /tasks/2
+
+Response:
+
+{"message": "Task deleted"}
+
+---
+
+## Project Structure
+task-manager-api
+│
+├── main.py
+├── requirements.txt
+└── README.md
+
+---
 
 ## Future Improvements
 
-- Add API to create tasks
-- Add API to delete tasks
-- Connect the API to a database
-- Add user authentication 
+Add task update functionality (PUT /tasks/{id})
 
-## Project Goal
+Connect the API to a real database (MySQL/PostgreSQL)
 
-This project is a beginner backend API built using FastAPI.  
-It demonstrates how to create a server, define API endpoints, and return JSON responses.
+Add user authentication
 
-The API currently supports retrieving tasks and will be extended to support creating and deleting tasks.
+Add task completion status updates
