@@ -15,6 +15,7 @@ def get_tasks():
 
 class Task(BaseModel):
     title: str
+    done: bool
 
 @app.post("/tasks")
 def create_task(task: Task):
@@ -29,4 +30,13 @@ def delete_task(task_id: int):
         if task["id"]==task_id:
             tasks.remove(task)
             return {"message": "Task deleted"}
+    return{"error": "Task not found"}
+
+@app.put("/tasks/{task_id}")
+def update_task(task_id: int, updated_task: Task):
+    for task in tasks:
+        if task["id"]== task_id:
+            task["title"]= update_task.title
+            task["done"]= update_task.done
+            return{"message": "Task updated", "task": task}
     return{"error": "Task not found"}
